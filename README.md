@@ -21,24 +21,41 @@ renders the same names.
   the ordering part is located by signature, and is skipped (with a message) if a future
   File Pilot build changes too much — the glyph part still applies.
 
-## Build
+## Install (no build needed)
 
-Needs MSYS2 UCRT64 gcc (`C:\msys64\ucrt64\bin`):
+1. Download **[`build/FilePilotUniversal.exe`](build/FilePilotUniversal.exe)**.
+2. **Close File Pilot completely**, including the tray icon (right-click the tray icon →
+   Exit). The patcher won't touch a running copy.
+3. Double-click **`FilePilotUniversal.exe`**. It patches your installed
+   `%LOCALAPPDATA%\Voidstar\FilePilot\FPilot.exe` in place and saves backups next to it.
+4. Start File Pilot. Hebrew, Arabic, CJK and more now render correctly.
+
+To undo: run `FilePilotUniversal.exe --undo` (restores the backup).
+Re-run the patcher after each File Pilot update.
+
+If File Pilot is installed somewhere non-standard, drag its `FPilot.exe` onto the patcher,
+or run `FilePilotUniversal.exe "C:\path\to\FPilot.exe"`.
+
+## Supported versions
+
+Built and tested against **File Pilot 0.8.5.0** (current release as of October 2026).
+
+It's designed to keep working on newer builds without a rebuild: the glyph coverage is a
+data-only pattern match that almost always still applies, and the right-to-left ordering
+is found by signature. If a future build moves that code, the patcher prints a clear
+message and skips **only** the ordering part — glyph coverage still goes in, and nothing
+is left half-patched. If that happens, open an issue with your version number.
+
+## Build from source (optional)
+
+Only needed if you want to compile it yourself. Needs MSYS2 UCRT64 gcc
+(`C:\msys64\ucrt64\bin`):
 
 ```bat
 build.bat
 ```
 
 Produces `FilePilotUniversal.exe` (the one-click patcher) plus a transform self-test.
-
-## Use
-
-1. Close File Pilot completely (including the tray icon).
-2. Double-click **`FilePilotUniversal.exe`** (or pass a path to `FPilot.exe`). It patches
-   `%LOCALAPPDATA%\Voidstar\FilePilot\FPilot.exe` in place and keeps backups.
-3. Start File Pilot.
-
-Re-run after each File Pilot update. To revert: `FilePilotUniversal.exe --undo`.
 
 ## How it fits together
 

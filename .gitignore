@@ -4,3 +4,6 @@
 *.obj
 fphook_dll.h
 build.log
+
+# but ship the prebuilt patcher
+!build/FilePilotUniversal.exe
