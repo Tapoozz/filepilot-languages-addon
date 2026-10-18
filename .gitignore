@@ -1,0 +1,6 @@
+*.exe
+*.dll
+*.o
+*.obj
+fphook_dll.h
+build.log
